@@ -328,10 +328,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d976328e354c3be46a582d84d5a64a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishPrefab: {fileID: 3308185626452060747, guid: a9be928df968af94fb7f7ed1c256a2aa, type: 3}
+  fishPrefab: {fileID: 6831418535260709914, guid: a9be928df968af94fb7f7ed1c256a2aa, type: 3}
   numFish: 100
   allFish: []
   swimLimits: {x: 3, y: 3, z: 3}
+  minSpeed: 0.53
+  maxSpeed: 1.6
 --- !u!4 &1339710229
 Transform:
   m_ObjectHideFlags: 0
@@ -346,3 +348,68 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &8297631324416262898
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 566901604597980276, guid: a9be928df968af94fb7f7ed1c256a2aa, type: 3}
+      propertyPath: myManager
+      value: 
+      objectReference: {fileID: 1339710228}
+    - target: {fileID: 6831418535260709914, guid: a9be928df968af94fb7f7ed1c256a2aa, type: 3}
+      propertyPath: m_Name
+      value: SardineSkinAndBoneModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6831418535260709914, guid: a9be928df968af94fb7f7ed1c256a2aa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8297631325367735951, guid: a9be928df968af94fb7f7ed1c256a2aa, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8297631325367735951, guid: a9be928df968af94fb7f7ed1c256a2aa, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8297631325367735951, guid: a9be928df968af94fb7f7ed1c256a2aa, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8297631325367735951, guid: a9be928df968af94fb7f7ed1c256a2aa, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8297631325367735951, guid: a9be928df968af94fb7f7ed1c256a2aa, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8297631325367735951, guid: a9be928df968af94fb7f7ed1c256a2aa, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8297631325367735951, guid: a9be928df968af94fb7f7ed1c256a2aa, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8297631325367735951, guid: a9be928df968af94fb7f7ed1c256a2aa, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8297631325367735951, guid: a9be928df968af94fb7f7ed1c256a2aa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8297631325367735951, guid: a9be928df968af94fb7f7ed1c256a2aa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8297631325367735951, guid: a9be928df968af94fb7f7ed1c256a2aa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a9be928df968af94fb7f7ed1c256a2aa, type: 3}
