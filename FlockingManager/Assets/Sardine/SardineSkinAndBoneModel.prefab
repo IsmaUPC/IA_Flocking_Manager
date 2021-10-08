@@ -67,6 +67,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myManager: {fileID: 0}
+  leader: 0
+  directionLeader: {x: 0, y: 0, z: 0, w: 1}
 --- !u!1 &8297631324131574621
 GameObject:
   m_ObjectHideFlags: 0

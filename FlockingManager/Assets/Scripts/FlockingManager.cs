@@ -19,7 +19,7 @@ public class FlockingManager : MonoBehaviour
     public float neighbourDistance;
     [Range(0.0f, 5.0f)]
     public float rotationSpeed;
-
+    private float freq = 0f;
 
     void Start () {
 
@@ -39,6 +39,23 @@ public class FlockingManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        // Assign a new leader
+        freq += Time.deltaTime;
+        if (freq > 0.5f)
+        {
+            freq -= 0.5f;
+            NewLeader();
+        }
+    }
+    void NewLeader()
+    {
+        int num = Random.Range(0, numFish);
+        for (int i = 0; i < numFish; i++)
+        {
+            allFish[i].GetComponent<Flock>().leader = false;
+        }
+        allFish[num].GetComponent<Flock>().leader = true;
+        allFish[num].GetComponent<Flock>().directionLeader = Random.rotation;
+        Debug.Log("I am a Leader");
     }
 }
