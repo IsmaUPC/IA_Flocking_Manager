@@ -49,39 +49,48 @@ public class Flock : MonoBehaviour
 		float distance;
 		int groupSize = 0;
 
-		foreach (GameObject go in myManager.allFish)
+		float distancePredator = Vector3.Distance(myManager.predator.transform.position, transform.position);
+		if (distancePredator < 1)
 		{
-			//Check that the object is different from the current one  
-			if (go != this.gameObject)
+			direction = (transform.position - myManager.predator.transform.position).normalized * speed;
+			direction *= 5;
+		}
+        else
+        {
+			foreach (GameObject go in myManager.allFish)
 			{
-				//Calculate the distance to the neighbor 
-				distance = Vector3.Distance(go.transform.position, transform.position);
-				//If the distance is less than the marked limit
-				if (distance <= myManager.neighbourDistance)
+				//Check that the object is different from the current one  
+				if (go != this.gameObject)
 				{
-					// Calcualte cohesion (the total amount of the positions)
-					cohesion += go.transform.position;
+					//Calculate the distance to the neighbor 
+					distance = Vector3.Distance(go.transform.position, transform.position);
+					//If the distance is less than the marked limit
+					if (distance <= myManager.neighbourDistance)
+					{
+						// Calcualte cohesion (the total amount of the positions)
+						cohesion += go.transform.position;
 
-					// Calculate align (the total amount of the directions)
-					// The leader has more influence over the other entities 
-					if (go.GetComponent<Flock>().leader)
-                    {
-						align += go.GetComponent<Flock>().direction * this.myManager.numFish*10;
+						// Calculate align (the total amount of the directions)
+						// The leader has more influence over the other entities 
+						if (go.GetComponent<Flock>().leader)
+						{
+							align += go.GetComponent<Flock>().direction * this.myManager.numFish * 10;
+						}
+						else align += go.GetComponent<Flock>().direction;
+
+						// Avoid crowding neighbours
+						separation -= (transform.position - go.transform.position) / (distance * distance);
+						// Increase group size
+						groupSize++;
 					}
-					else align += go.GetComponent<Flock>().direction;
-
-					// Avoid crowding neighbours
-					separation -= (transform.position - go.transform.position) / (distance * distance);
-					// Increase group size
-					groupSize++; 
 				}
 			}
+			cohesion = (cohesion / groupSize - transform.position).normalized * speed;
+			align /= groupSize;
+			speed = Mathf.Clamp(align.magnitude, myManager.minSpeed, myManager.maxSpeed);
+			// Combination for calculate new direction
+			direction = (cohesion + align + separation).normalized * speed;
 		}
-		cohesion = (cohesion / groupSize - transform.position).normalized * speed;
-		align /= groupSize;
-		speed = Mathf.Clamp(align.magnitude, myManager.minSpeed, myManager.maxSpeed);
-		// Combination for calculate new direction
-		direction = (cohesion + align + separation).normalized * speed;
 	}
 	 
 }

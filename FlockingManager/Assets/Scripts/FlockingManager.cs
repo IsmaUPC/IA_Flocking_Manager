@@ -5,6 +5,7 @@ using UnityEngine;
 public class FlockingManager : MonoBehaviour
 {
     public GameObject fishPrefab;
+    public GameObject predator;
     public int numFish = 20;
     public GameObject[] allFish;
     public Vector3 swimLimits = new Vector3(5, 5, 5);
