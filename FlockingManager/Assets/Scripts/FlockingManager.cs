@@ -11,23 +11,21 @@ public class FlockingManager : MonoBehaviour
     public Vector3 swimLimits = new Vector3(5, 5, 5);
 
     [Header("Fish Settings")]
-    [Range(0.0f, 5.0f)]
-    public float minSpeed;
-    [Range(0.0f, 5.0f)]
-    public float maxSpeed;
+    [Range(0.0f, 5.0f)] public float minSpeed;
 
-    [Range(1.0f, 10.0f)]
-    public float neighbourDistance;
-    [Range(0.0f, 5.0f)]
-    public float rotationSpeed;
+    [Range(0.0f, 5.0f)] public float maxSpeed;
+
+    [Range(1.0f, 10.0f)] public float neighbourDistance;
+
+    [Range(0.0f, 5.0f)] public float rotationSpeed;
     private float freq = 0f;
 
     void Start () {
-
+        Vector3 pos;
         allFish = new GameObject[numFish];
         for (int i = 0; i < numFish; i++)
         {
-            Vector3 pos = this.transform.position +
+            pos = this.transform.position +
                 new Vector3(Random.Range(-swimLimits.x, swimLimits.x),
                 Random.Range(-swimLimits.y, swimLimits.y),
                 Random.Range(-swimLimits.z, swimLimits.z));
@@ -42,9 +40,9 @@ public class FlockingManager : MonoBehaviour
     {
         // Assign a new leader
         freq += Time.deltaTime;
-        if (freq > 0.5f)
+        if (freq > 01.5f)
         {
-            freq -= 0.5f;
+            freq -= 0.15f;
             NewLeader();
         }
     }

@@ -50,7 +50,7 @@ public class Flock : MonoBehaviour
 		int groupSize = 0;
 
 		float distancePredator = Vector3.Distance(myManager.predator.transform.position, transform.position);
-		if (distancePredator < 1)
+		if (distancePredator < 2)
 		{
 			direction = (transform.position - myManager.predator.transform.position).normalized * speed;
 			direction *= 5;
