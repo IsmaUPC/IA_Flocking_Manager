@@ -9,6 +9,10 @@ public class FlockingManager : MonoBehaviour
     public int numFish = 20;
     public GameObject[] allFish;
     public Vector3 swimLimits = new Vector3(5, 5, 5);
+    public bool isLeader = false;
+    public Quaternion directionLeader = Quaternion.identity;
+    int num = 0;
+    public int GetLeader() { return num; }
 
     [Header("Fish Settings")]
     [Range(0.0f, 5.0f)] public float minSpeed;
@@ -20,7 +24,8 @@ public class FlockingManager : MonoBehaviour
     [Range(0.0f, 5.0f)] public float rotationSpeed;
     private float freq = 0f;
 
-    void Start () {
+    void Start()
+    {
         Vector3 pos;
         allFish = new GameObject[numFish];
         for (int i = 0; i < numFish; i++)
@@ -40,21 +45,35 @@ public class FlockingManager : MonoBehaviour
     {
         // Assign a new leader
         freq += Time.deltaTime;
-        if (freq > 01.5f)
+        if (freq > 5)
         {
-            freq -= 0.15f;
-            NewLeader();
+            freq -= 5;
+            if (isLeader)
+            {
+                NewLeader();
+                freq -= 5;
+            }
+            else
+            {
+                DeleteLeader();
+            }
+
+            isLeader = !isLeader;
         }
     }
     void NewLeader()
     {
-        int num = Random.Range(0, numFish);
-        for (int i = 0; i < numFish; i++)
-        {
-            allFish[i].GetComponent<Flock>().leader = false;
-        }
+        num = Random.Range(0, numFish);
+        DeleteLeader();
+
         allFish[num].GetComponent<Flock>().leader = true;
-        allFish[num].GetComponent<Flock>().directionLeader = Random.rotation;
+        directionLeader = Random.rotation;
         Debug.Log("I am a Leader");
     }
+
+    void DeleteLeader()
+    {
+        allFish[num].GetComponent<Flock>().leader = false;
+    }
+
 }

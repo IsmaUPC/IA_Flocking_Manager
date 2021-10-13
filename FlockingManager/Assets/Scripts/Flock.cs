@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class Flock : MonoBehaviour
 {
-    public FlockingManager myManager;
-    float speed;
+	public FlockingManager myManager;
+	float speed;
 	Vector3 direction = Vector3.zero;
 
 	public bool leader = false;
 	public Quaternion directionLeader = Quaternion.identity;
 
 	private float freq = 0f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        speed = Random.Range(myManager.minSpeed, myManager.maxSpeed);
-    }
+	// Start is called before the first frame update
+	void Start()
+	{
+		speed = Random.Range(myManager.minSpeed, myManager.maxSpeed);
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
+	// Update is called once per frame
+	void Update()
+	{
 		freq += Time.deltaTime;
 		if (freq > 0.5)
 		{
@@ -29,23 +29,23 @@ public class Flock : MonoBehaviour
 		}
 		// If this is a leader dictates a new random address
 		if (leader)
-        {			
+		{
 			transform.rotation = directionLeader;
 		}
-        else if (direction != Vector3.zero)
-        {
+		else if (direction != Vector3.zero)
+		{
 			transform.rotation = Quaternion.Slerp(transform.rotation,
 									  Quaternion.LookRotation(direction),
 									  myManager.rotationSpeed * Time.deltaTime);
 		}
-		
-        transform.Translate(0, 0, Time.deltaTime * speed);
+
+		transform.Translate(0, 0, Time.deltaTime * speed);
 	}
 	void ApplyRules()
 	{
 		Vector3 cohesion = Vector3.zero;
-		Vector3 align = Vector3.zero;		
-		Vector3 separation = Vector3.zero;		
+		Vector3 align = Vector3.zero;
+		Vector3 separation = Vector3.zero;
 		float distance;
 		int groupSize = 0;
 
@@ -55,8 +55,8 @@ public class Flock : MonoBehaviour
 			direction = (transform.position - myManager.predator.transform.position).normalized * speed;
 			direction *= 5;
 		}
-        else
-        {
+		else
+		{
 			foreach (GameObject go in myManager.allFish)
 			{
 				//Check that the object is different from the current one  
@@ -92,6 +92,5 @@ public class Flock : MonoBehaviour
 			direction = (cohesion + align + separation).normalized * speed;
 		}
 	}
-	 
-}
 
+}
